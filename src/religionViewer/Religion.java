@@ -38,16 +38,18 @@ public class Religion {
 		// DOD
 		colorMap.put("taiping", 	new Color(0.5f, 0.5f, 0f));
 		colorMap.put("assyrian", 	new Color(0f, 0.5f, 0.7f));
-		colorMap.put("zoroastrian", new Color(0.7f, 0.2f, 0.1f));
+		colorMap.put("zoroastrian",	new Color(0.7f, 0.2f, 0.1f));
 		colorMap.put("jain", 		new Color(0f, 0.1f, 0f));
 		colorMap.put("inti",		new Color(0.6f, 0.7f, 0.6f));
 		colorMap.put("fetishist", 	new Color(0.419f, 0.247f, 0.627f));
-		
 	}
 	
 	public static Color getReligionColor(String religion) {
 		
-		if(religion == "") System.out.println("Empty Religion!");
+		if(religion == "") {
+			System.out.println("Empty Religion!");
+			return Color.BLACK;
+		}
 		
 		Color c = colorMap.get(religion);
 		// If the Map has that religion, return that color.
@@ -55,9 +57,10 @@ public class Religion {
 		
 		// Otherwise, add the religion to the map, and give it a random color
 		// based off of the religion name.
-		System.out.println("Adding new religion to hashmap: " + religion);
+		
 		Random r = new Random(religion.hashCode());
 		c = new Color(r.nextFloat(), r.nextFloat(), r.nextFloat());
+		System.out.println("Adding new religion to hashmap: [" + religion + "], #" + Integer.toHexString(c.getRGB()));
 		colorMap.put(religion, c);
 		return c;
 	}
